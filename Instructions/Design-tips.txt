@@ -1,0 +1,27 @@
+Perfect Chuck - You need to break up large blocks of text, as chunks are hated by vistors
+
+50 - 75 characters or about 600px to 700px with a line break ever two to 3 sentences 
+
+Bullet points are very useful and the brain loves them, however bullet points that aren’t in the correct spot, not lineup evenly or don’t even make sense will turn a visitor off faster than bad hygiene 
+
+The Consistent Spacing system: people often say they want a really clean website, all that really  means is that aren’t things are sized and spaced random, there’s a method to it, a rhuthm to it that makes the layout easy to navigate and predictable for the user
+
+Introducing the 8 point grid system → all elements are spaced by multiples of 8
+
+1. start with a baseline value
+2. separate groups by at least double 
+3. keep the distance between big groups similar 
+
+Use ratios for line height → Display Headers 1:1 ration
+
+paragraph → 1:1.5 ratio
+
+Letter spacing rules
+
+Display FONTS → -1px → remember your optimizing for scan ability 
+
+Body text → 0px → remember your optimizing for legality 
+
+CTA → 1px → remember your optimizing for Click ability
+
+Always apply and optimize these rules to mobile, tablet, and desktop sizes

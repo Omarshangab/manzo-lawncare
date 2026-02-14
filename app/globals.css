@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
 :root {
+  /* Base layer - White (70-80% of page) */
   --background: #ffffff;
-  --foreground: #171717;
+  
+  /* Primary text - Near-black, not pure black */
+  --foreground: #1C1C1C;
+  
+  /* Secondary text - Muted dark gray */
+  --foreground-secondary: #5F5F5F;
+  
+  /* Brand accents */
+  --green-primary: #3C872B;
+  --green-dark: #2F6A22;
+  --yellow-accent: #FCCA2F;
+  --brown-accent: #451108;
+  
+  /* Optional neutral background for sections */
+  --neutral-bg: #F7F7F7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-green-primary: var(--green-primary);
+  --color-green-dark: var(--green-dark);
+  --color-yellow-accent: var(--yellow-accent);
+  --color-brown-accent: var(--brown-accent);
+  --color-neutral-bg: var(--neutral-bg);
+  --font-heading: var(--font-raleway);
+  --font-body: var(--font-merriweather);
+  --font-family-heading: var(--font-raleway), sans-serif;
+  --font-family-body: var(--font-merriweather), Georgia, serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-merriweather), Georgia, serif;
+  font-feature-settings: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-raleway), sans-serif;
+  font-feature-settings: normal;
+}
+
+/* Display Headers - 1:1 line height ratio, -1px letter spacing */
+h1 {
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* Paragraphs - 1:1.5 line height ratio, 0px letter spacing */
+p {
+  line-height: 1.5;
+  letter-spacing: 0px;
+  max-width: 700px;
+}
+
+/* CTA Buttons - 1px letter spacing */
+.cta-button {
+  letter-spacing: 1px;
+}
+
+/* Glassmorphic effect utilities */
+.glassmorphic {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Facebook embed styling - Note: Timestamps are controlled by Facebook and cannot be hidden */
+.facebook-embed-wrapper {
+  position: relative;
+  overflow: hidden;
 }

@@ -1,0 +1,142 @@
+PRD: Scroll-Linked Photo Marquee Component
+Reference
+Live example: https://landscapers.framer.website/ — the horizontal row of photos at the bottom of the hero section that slides left as you scroll down.
+
+Overview
+Build a reusable Next.js component that displays a horizontal row of square images. The row translates along the X-axis driven by scroll position, creating a parallax marquee effect. The entire row sits inside a 3D perspective wrapper for subtle depth.
+
+Tech Stack
+
+Next.js (App Router, "use client" component)
+framer-motion — specifically useScroll and useTransform for scroll-linked animation
+next/image for optimized image loading
+No additional dependencies
+
+
+Component: <PhotoMarquee />
+Props
+PropTypeDefaultDescriptionimages{ src: string; alt: string }[]requiredArray of image objects to displayimageSizenumber250Width and height of each square card in pxgapnumber16Gap between cards in pxborderRadiusnumber20Border radius of each card in pxperspectivenumber1200CSS perspective value in px on the wrapperslideDistancenumber400How far the row translates in each direction (total travel = slideDistance × 2)
+Behavior
+
+Scroll tracking: Use framer-motion's useScroll hook with target set to the component's section ref and offset: ["start end", "end start"]. This gives a scrollYProgress motion value from 0 (section top reaches viewport bottom) to 1 (section bottom reaches viewport top).
+Horizontal translation: Use useTransform to map scrollYProgress from [0, 1] to [+slideDistance, -slideDistance]. Feed this into the x style prop of a motion.div wrapping the image row. The row starts offset to the right and slides left as the user scrolls down.
+3D perspective: Wrap the motion.div row in a plain div with perspective: {perspective}px. This gives a subtle depth effect to the horizontal movement.
+Overflow clipping: The outermost <section> element must have overflow: hidden so images outside the viewport are clipped cleanly.
+No re-renders on scroll: The x motion value is passed directly to motion.div's style — it updates via framer-motion's internal animation frame loop, NOT via React state. This is critical for performance.
+
+DOM Structure
+<section>                         ← ref for useScroll, overflow: hidden
+  <div>                           ← perspective wrapper
+    <motion.div>                  ← flex row, animated x
+      <div>                       ← image card (repeated for each image)
+        <Image />                 ← next/image, fill mode, object-fit: cover
+      </div>
+    </motion.div>
+  </div>
+</section>
+Styling Spec
+Section (outermost)
+
+width: 100%
+overflow: hidden
+padding: 60px 0 (vertical breathing room)
+
+Perspective wrapper
+
+perspective: {perspective}px
+width: 100%
+display: flex
+justify-content: center
+
+Motion row
+
+display: flex
+gap: {gap}px
+x style prop bound to the scroll-linked motion value
+
+Image card
+
+flex-shrink: 0
+width: {imageSize}px
+height: {imageSize}px
+border-radius: {borderRadius}px
+overflow: hidden
+position: relative (required for next/image fill)
+
+Image
+
+next/image with fill prop
+sizes="{imageSize}px"
+object-fit: cover
+object-position: center
+
+
+Usage Example
+tsx// app/page.tsx
+import PhotoMarquee from "@/components/PhotoMarquee";
+
+const galleryImages = [
+  { src: "/images/garden-1.jpg", alt: "Landscaping project 1" },
+  { src: "/images/garden-2.jpg", alt: "Landscaping project 2" },
+  { src: "/images/garden-3.jpg", alt: "Landscaping project 3" },
+  { src: "/images/garden-4.jpg", alt: "Landscaping project 4" },
+  { src: "/images/garden-5.jpg", alt: "Landscaping project 5" },
+  { src: "/images/garden-6.jpg", alt: "Landscaping project 6" },
+  { src: "/images/garden-7.jpg", alt: "Landscaping project 7" },
+  { src: "/images/garden-8.jpg", alt: "Landscaping project 8" },
+];
+
+export default function Home() {
+  return (
+    <main>
+      <section style={{ height: "100vh" }}>
+        {/* Hero content */}
+      </section>
+
+      <PhotoMarquee images={galleryImages} />
+
+      <section>
+        {/* Rest of page */}
+      </section>
+    </main>
+  );
+}
+
+Acceptance Criteria
+
+ Row of images scrolls horizontally as the user scrolls vertically
+ Movement is smooth with no jank (GPU-accelerated transforms only, no layout thrashing)
+ Images are clipped at the viewport edges (no horizontal scrollbar)
+ 3D perspective is visible — slight depth feel on the row
+ Component is fully reusable via props (images, sizing, speed)
+ Works on mobile (touch scroll) and desktop
+ Uses next/image with proper sizes and fill for optimization
+ No React re-renders on scroll — animation runs entirely through framer-motion's motion values
+ "use client" directive is present at the top of the file
+
+
+Edge Cases
+
+Fewer than enough images to fill viewport: Row should still center and slide, just with less travel. Consider setting slideDistance lower or calculating it dynamically based on total row width vs viewport width.
+Window resize: useScroll from framer-motion handles resize automatically. No manual listener needed.
+SSR: Component must be a client component ("use client"). The scroll hooks only run in the browser. No hydration mismatch risk since initial x is just a motion value (renders at 0).
+
+use these images 
+/Users/thescv/manzo-lawncare/public/583885743_1328256685978713_2655459420314320017_n.jpg
+/Users/thescv/manzo-lawncare/public/581810828_1328256535978728_1331481319508351998_n.jpg
+/Users/thescv/manzo-lawncare/public/557740636_1289505913187124_6273098613637142558_n.jpg
+/Users/thescv/manzo-lawncare/public/557346761_1289505829853799_5272241035925803687_n.jpg
+/Users/thescv/manzo-lawncare/public/540895651_1254299423374440_7077910242545649879_n.jpg
+/Users/thescv/manzo-lawncare/public/518405774_1238192228318493_2858524767760671889_n.jpg
+/Users/thescv/manzo-lawncare/public/492503124_1152343840236666_4536240585132358357_n.jpg
+/Users/thescv/manzo-lawncare/public/487549405_1128125985991785_3970230590803549414_n.jpg
+/Users/thescv/manzo-lawncare/public/486766382_1127138076090576_6929681550466688351_n.jpg
+/Users/thescv/manzo-lawncare/public/385307532_752671176870603_7029622015782133240_n.jpg
+
+
+Optional Enhancements (not in scope for v1)
+
+Reverse direction variant (slides right instead of left)
+Individual card scale or opacity animations tied to their distance from viewport center
+Infinite loop (duplicate images at both ends for seamless wrapping)
+Configurable easing curve on the scroll-to-translate mapping

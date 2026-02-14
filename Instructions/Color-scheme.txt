@@ -1,0 +1,41 @@
+Now the palette you should actually use
+Base layer
+White: #FFFFFF
+This should be 70–80% of the page.
+Primary text
+Near-black, not pure black: #1C1C1C
+Pure black is harsher and lowers reading comfort.
+Secondary text
+Muted dark gray: #5F5F5F
+Used for descriptions, not headlines.
+Brand accents derived from logo
+Do not invent new colors. Just control intensity.
+Green
+Primary green: #3C872B
+Use sparingly. Buttons, icons, checkmarks, section dividers.
+Dark green variant for hover states
+#2F6A22
+Yellow
+Accent only: #FCCA2F
+Use for highlights, badges, subtle emphasis.
+Never use yellow for body text. Contrast failure.
+Brown
+Supporting accent: #451108
+Use for footer background, logo text, or thin separators.
+Do not use brown for large content blocks. It kills clarity.
+Optional neutral background for sections
+Soft off-white: #F7F7F7
+Used to separate sections without adding color noise.
+What not to do
+Do not put green backgrounds behind large text blocks.
+Do not mix multiple greens.
+Do not add blues or oranges “for contrast.” That breaks brand coherence.
+Do not darken the whole site to look “premium.” Lawn care is not luxury, it’s reliability.
+Visual hierarchy rule
+White carries structure
+Black carries information
+Green carries action
+Yellow carries attention
+Brown anchors brand identity
+If you violate that order, the site will feel amateur even if the colors are technically fine.
+

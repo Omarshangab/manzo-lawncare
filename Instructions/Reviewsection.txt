@@ -1,0 +1,333 @@
+PRD: Testimonials Section with Vertical Auto-Scrolling Carousel
+Reference
+Live example: https://landscapers.framer.website/ — the testimonials section with the vertical auto-scrolling review cards on the right side.
+
+Overview
+Build a full-width testimonials section that has a background image with a dark gradient overlay, a left column with heading/CTA/review-platform links, and a right column containing a vertical infinite-scrolling carousel of testimonial cards. The cards scroll upward continuously on a loop with no user interaction required.
+
+Tech Stack
+
+Next.js (App Router, "use client" component)
+framer-motion for the vertical infinite scroll animation
+next/image for optimized images
+Tailwind CSS for styling (or CSS modules — your choice)
+No other dependencies
+
+
+Section Layout
+The entire section is a single full-width container with a background image, a gradient overlay on top of it, and content on top of both.
+Layout: Two Columns
+┌─────────────────────────────────────────────────────┐
+│  [Background Image — full bleed, cover]             │
+│  [Gradient Overlay — darkens the image]             │
+│                                                     │
+│  ┌──────────────────┐  ┌────────────────────────┐   │
+│  │  LEFT COLUMN     │  │  RIGHT COLUMN          │   │
+│  │                  │  │                        │   │
+│  │  [Label pill]    │  │  ┌──────────────────┐  │   │
+│  │  "Testimonials"  │  │  │ Testimonial Card │  │   │
+│  │                  │  │  └──────────────────┘  │   │
+│  │  [Heading]       │  │  ┌──────────────────┐  │   │
+│  │  "Our Customers  │  │  │ Testimonial Card │  │   │
+│  │   Says Better    │  │  └──────────────────┘  │   │
+│  │   Than Us"       │  │  ┌──────────────────┐  │   │
+│  │                  │  │  │ Testimonial Card │  │   │
+│  │  [CTA Button]    │  │  └──────────────────┘  │   │
+│  │  "View Reviews"  │  │                        │   │
+│  │                  │  │  (scrolls upward        │   │
+│  │  [Review Links]  │  │   infinitely)           │   │
+│  │  Google / FB     │  │                        │   │
+│  └──────────────────┘  └────────────────────────┘   │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+Desktop: side by side, roughly 40/60 split.
+Mobile: stack vertically — left column on top, carousel below.
+
+Component Breakdown
+1. <TestimonialsSection /> — Parent Container
+Props:
+PropTypeDefaultDescriptiontestimonialsTestimonial[]requiredArray of testimonial dataheadingstringrequiredSection heading textlabelstring"Testimonials"Small pill label above the headingctaTextstring"View Reviews"CTA button textctaHrefstring"/reviews"CTA button linkbackgroundImagestringrequiredPath to the background imagereviewPlatformsReviewPlatform[]requiredArray of review platform links
+Testimonial type:
+tsinterface Testimonial {
+  id: string;
+  name: string;
+  location: string;
+  avatarSrc: string;
+  review: string;
+  source: string; // e.g. "Google Review", "Facebook Review", "Project Review"
+}
+ReviewPlatform type:
+tsinterface ReviewPlatform {
+  name: string;        // e.g. "Google Reviews"
+  subtitle: string;    // e.g. "400+ Five Star Reviews"
+  href: string;
+  icon: React.ReactNode; // SVG icon component
+}
+Styling:
+
+position: relative (to layer bg, overlay, and content)
+width: 100%
+overflow: hidden
+padding: 80px 40px (adjust for mobile)
+max-width: 1440px centered with auto margins for the inner content
+
+2. Background Layer
+
+A next/image element with fill, object-fit: cover, object-position: center
+Sits at z-index: 0, position: absolute, inset: 0
+
+3. Gradient Overlay
+
+position: absolute, inset: 0, z-index: 1
+background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%)
+This darkens the left side more heavily (where the text is) and fades out toward the right
+
+4. Content Wrapper
+
+position: relative, z-index: 2 (sits above bg and overlay)
+display: flex, gap: 40px
+On mobile: flex-direction: column
+
+
+Left Column — Heading & CTA
+4a. Label Pill
+
+Small inline-flex container
+Horizontal layout: [green dot/line] [text] [green dot/line]
+Text: "Testimonials" in green (rgb(135, 186, 84))
+Font size: small (12–14px), uppercase or normal weight
+Background: rgba(51, 66, 50, 0.05), border-radius: 9px, padding 6px 12px
+The dots/lines on either side of the text are small decorative elements in the same green, at opacity: 0.5
+
+4b. Section Heading
+
+<h2> tag
+White text (rgb(255, 255, 255))
+Large font size (36–48px), bold weight
+Font family: match your project's heading font (the reference uses a serif/display font)
+Left-aligned
+max-width: ~500px so it doesn't stretch too wide
+
+4c. CTA Button
+
+Link styled as a button
+border: 1px solid rgb(217, 124, 29) (orange)
+border-radius: 20px
+Two-part layout:
+
+Left: text "View Reviews" on an orange background (rgb(217, 124, 29)), white text, padded, with border-radius on the right side matching the pill shape
+Right: circular orange icon area containing an arrow icon rotated 45 degrees (pointing top-right, indicating an outbound/forward action)
+
+
+Hover state: slight brightness increase or scale
+
+4d. Review Platform Links
+
+Label text above: "Check More Reviews:" in rgba(255, 255, 255, 0.8), small font
+Two small card-links side by side:
+
+background: rgba(255, 255, 255, 0.05), border-radius: 10px
+Each card has: icon (left), platform name (white, bold), subtitle (white at 50% opacity, 10px font)
+Entire card is an <a> tag linking to the platform (target="_blank", rel="noopener")
+Icons are duotone style, colored in orange (rgb(255, 122, 59)) — Google "G" icon and Facebook "F" icon
+
+
+
+
+Right Column — Vertical Auto-Scrolling Carousel
+This is the main interactive element. It is a vertical infinite-scrolling list of testimonial cards that moves upward automatically.
+Animation Mechanism
+How the infinite scroll works:
+
+Take the array of testimonials (e.g. 3 items)
+Duplicate the array 3× so you have 9+ items rendered in a vertical flex column
+Animate the <ul> container's translateY from 0 to -(height of one set of items) using a CSS animation or framer-motion
+When the animation completes one cycle, it resets seamlessly back to 0 (because the duplicated items make the loop seamless)
+The animation is continuous, linear, and infinite — no easing, no pauses
+
+Implementation approach (CSS animation — simplest):
+css@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(-1 * var(--scroll-distance))); }
+}
+Where --scroll-distance equals the combined height of one set of testimonial items + gaps.
+Alternatively use framer-motion's animate with repeat: Infinity and ease: "linear".
+Container styling:
+
+overflow: hidden on the outer <section> wrapper
+The <ul> inside uses display: flex, flex-direction: column, gap: 20px
+will-change: transform for GPU acceleration
+Height of the visible area should be constrained (e.g. max-height: 500px or match the left column height)
+
+Pause on hover (optional but recommended):
+
+On mouseenter of the carousel area, pause the animation (animation-play-state: paused)
+On mouseleave, resume
+
+5. Testimonial Card Component
+Each card is a glassmorphism-styled container:
+Styling:
+
+backdrop-filter: blur(5px)
+background: rgba(255, 255, 255, 0.05)
+border-radius: 10px
+padding: ~20px
+
+Card internal layout (top to bottom):
+┌──────────────────────────────────────┐
+│  [Avatar]  Name              │
+│            Location                  │
+│                                      │
+│  "Review text goes here. It can      │
+│   wrap to multiple lines..."         │
+│                                      │
+│  ──────────────────────────────────  │  ← divider line
+│                                      │
+│  Source Label        ★★★★★           │
+└──────────────────────────────────────┘
+Card sub-elements:
+Header row (display: flex, align-items: center, gap: 12px):
+
+Avatar: next/image, 44×44px, border-radius: 17px (slightly rounded square), wrapped in a container with background: rgba(33, 80, 82, 0.06), border-radius: 20px, slight padding
+Name & location column (flex-direction: column):
+
+Name: <h3>, white text, semi-bold, ~16px
+Location: paragraph, rgba(255, 255, 255, 0.5), ~12px
+
+
+
+Review text:
+
+White text (rgb(255, 255, 255))
+Regular weight, ~14px line-height ~1.5
+margin-top: 16px
+
+Divider:
+
+height: 1px
+background: rgba(255, 255, 255, 0.1)
+margin: 16px 0
+
+Footer row (display: flex, align-items: center, justify-content: space-between):
+
+Source label: rgba(255, 255, 255, 0.5), ~12px (e.g. "Google Review", "Facebook Review")
+Star rating: 5 star icons in a row, colored orange/gold — render as an inline SVG or use a simple star component
+
+
+Props Summary for All Components
+ts// Main section
+interface TestimonialsSectionProps {
+  testimonials: Testimonial[];
+  heading: string;
+  label?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  backgroundImage: string;
+  reviewPlatforms: ReviewPlatform[];
+}
+
+// Individual testimonial
+interface Testimonial {
+  id: string;
+  name: string;
+  location: string;
+  avatarSrc: string;
+  review: string;
+  source: string;
+}
+
+// Review platform link
+interface ReviewPlatform {
+  name: string;
+  subtitle: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+DOM Structure
+<section>                                ← position: relative, overflow: hidden
+  <Image />                              ← background, fill, z-0
+  <div />                                ← gradient overlay, z-1
+  <div>                                  ← content wrapper, z-2, flex row
+    <div>                                ← left column
+      <div>                              ← label pill
+        <span /> "Testimonials" <span />
+      </div>
+      <h2>Heading</h2>
+      <a>CTA Button</a>
+      <div>                              ← review platforms row
+        <p>Check More Reviews:</p>
+        <div>                            ← flex row
+          <a>Google card</a>
+          <a>Facebook card</a>
+        </div>
+      </div>
+    </div>
+    <div>                                ← right column, overflow: hidden
+      <ul>                               ← animated vertical scroll container
+        <li><TestimonialCard /></li>      ← original items
+        <li><TestimonialCard /></li>
+        <li><TestimonialCard /></li>
+        <li><TestimonialCard /></li>      ← duplicated items for infinite loop
+        <li><TestimonialCard /></li>
+        <li><TestimonialCard /></li>
+        ...
+      </ul>
+    </div>
+  </div>
+</section>
+
+Color Tokens
+TokenValueUsage--accent-greenrgb(135, 186, 84)Label pill text, decorative dots--accent-orangergb(217, 124, 29)CTA button background, button border--icon-orangergb(255, 122, 59)Platform icons (Google, Facebook)--text-whitergb(255, 255, 255)Headings, names, review text--text-white-80rgba(255, 255, 255, 0.8)"Check More Reviews" label--text-white-50rgba(255, 255, 255, 0.5)Locations, source labels, subtitles--glass-bgrgba(255, 255, 255, 0.05)Card backgrounds, platform link backgrounds--dividerrgba(255, 255, 255, 0.1)Card divider lines--label-bgrgba(51, 66, 50, 0.05)Label pill background
+
+Responsive Behavior
+Desktop (>1024px):
+
+Two-column layout, side by side
+Carousel height matches left column height naturally
+Cards are full width within the right column
+
+Tablet (768–1024px):
+
+Two columns can shrink, reduce padding
+Carousel may show 2 visible cards at a time
+
+Mobile (<768px):
+
+Stack vertically: heading/CTA on top, carousel below
+Carousel gets a fixed height (~400px) with overflow hidden
+Cards stretch full width
+Review platform cards stack or shrink
+
+
+Acceptance Criteria
+
+ Background image renders full-bleed with gradient overlay darkening left side
+ Left column: label pill, heading, CTA button, and review platform links all render correctly
+ CTA button has the two-part design (text section + icon section) with orange styling
+ Review platform links open in new tabs
+ Testimonial cards scroll upward continuously and infinitely with no visible seam/jump
+ Scroll animation is linear (no easing) and smooth (GPU-accelerated via transform)
+ Cards use glassmorphism: backdrop-filter: blur(5px) + semi-transparent white background
+ Each card displays: avatar, name, location, review text, divider, source label, and star rating
+ Section is fully responsive — stacks on mobile
+ Carousel pauses on hover (optional but recommended)
+ All text colors match the token table above
+ Component is "use client" with no SSR issues
+
+
+Edge Cases
+
+Single testimonial: Duplicate it enough times to fill the visible height + one extra set for the loop
+Very long review text: Allow text to wrap naturally; card height grows. The scroll animation should use dynamically calculated height (measure with a ref after render)
+No background image: Fall back to a solid dark color (#0a0a0a)
+Missing avatar: Show a placeholder circle with the person's initials
+
+
+Optional Enhancements (not in v1 scope)
+
+Scroll speed prop (configurable animation duration)
+Reverse scroll direction (downward)
+Click on card to expand/read full review in a modal
+Fetch testimonials from a CMS or API instead of static props
+Fade-out mask at top and bottom edges of the carousel (using a CSS gradient mask) for a polished look
