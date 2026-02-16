@@ -72,6 +72,49 @@ p {
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Card hover lift — used on service cards, how-it-works, etc. */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+              box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* Ken Burns slow zoom for hero background */
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+.ken-burns {
+  animation: ken-burns 20s ease-out forwards;
+}
+
+/* Marquee edge fade masks */
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* Subtle dot grid pattern for section depth */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 /* Facebook embed styling - Note: Timestamps are controlled by Facebook and cannot be hidden */
 .facebook-embed-wrapper {
   position: relative;

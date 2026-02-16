@@ -32,8 +32,9 @@ export default function PhotoMarquee({
 
   return (
     <section
+      id="our-work"
       ref={sectionRef}
-      className="w-full overflow-hidden py-16"
+      className="marquee-mask w-full overflow-hidden py-16"
       style={{ padding: "60px 0" }}
     >
       <div
@@ -51,7 +52,7 @@ export default function PhotoMarquee({
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative flex-shrink-0 overflow-hidden"
+              className="relative flex-shrink-0 overflow-hidden transition-shadow duration-300 hover:shadow-xl"
               style={{
                 width: `${imageSize}px`,
                 height: `${imageSize}px`,
@@ -63,7 +64,7 @@ export default function PhotoMarquee({
                 alt={image.alt}
                 fill
                 sizes={`${imageSize}px`}
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-500 hover:scale-105"
               />
             </div>
           ))}

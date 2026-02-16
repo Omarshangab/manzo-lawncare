@@ -55,7 +55,16 @@ export default function TestimonialsSection({
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="py-20 px-8 md:px-16 lg:py-32">
+    <>
+    {scrollDistance > 0 && (
+      <style>{`
+        @keyframes testimonial-scroll {
+          from { transform: translateY(0); }
+          to { transform: translateY(-${scrollDistance}px); }
+        }
+      `}</style>
+    )}
+    <section id="testimonials" className="py-20 px-8 md:px-16 lg:py-32">
       {/* Card Container */}
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-background shadow-2xl">
         {/* Background Image */}
@@ -80,7 +89,13 @@ export default function TestimonialsSection({
         {/* Content Wrapper */}
         <div className="relative z-[2] flex flex-col gap-10 p-8 md:p-12 lg:flex-row lg:gap-16 lg:p-16">
         {/* Left Column */}
-        <div className="flex flex-col gap-8 lg:w-2/5">
+        <motion.div
+          className="flex flex-col gap-8 lg:w-2/5"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+        >
           {/* Label Pill */}
           <div className="inline-flex items-center gap-2 self-start rounded-lg px-3 py-1.5" style={{ background: "rgba(51, 66, 50, 0.05)" }}>
             <div className="h-0.5 w-4" style={{ background: "rgba(135, 186, 84, 0.5)" }} />
@@ -101,13 +116,13 @@ export default function TestimonialsSection({
           {/* CTA Button */}
           <a
             href={ctaHref}
-            className="group inline-flex w-fit items-center overflow-hidden rounded-[20px] border transition-all hover:brightness-110"
-            style={{ borderColor: "rgb(217, 124, 29)" }}
+            className="cta-button group inline-flex w-fit items-center overflow-hidden rounded-[20px] border transition-all hover:brightness-110"
+            style={{ borderColor: "var(--green-primary)" }}
           >
             <span
               className="px-6 py-3 text-base font-semibold text-white"
               style={{
-                background: "rgb(217, 124, 29)",
+                background: "var(--green-primary)",
                 fontFamily: "var(--font-raleway), sans-serif",
               }}
             >
@@ -115,7 +130,7 @@ export default function TestimonialsSection({
             </span>
             <div
               className="flex h-12 w-12 items-center justify-center"
-              style={{ background: "rgb(217, 124, 29)" }}
+              style={{ background: "var(--green-primary)" }}
             >
               <svg
                 width="20"
@@ -150,7 +165,7 @@ export default function TestimonialsSection({
                   className="flex items-center gap-3 rounded-[10px] px-4 py-3 transition-all hover:bg-white/10"
                   style={{ background: "rgba(255, 255, 255, 0.05)" }}
                 >
-                  <div style={{ color: "rgb(255, 122, 59)" }}>{platform.icon}</div>
+                  <div style={{ color: "var(--green-primary)" }}>{platform.icon}</div>
                   <div className="flex flex-col">
                     <span className="text-sm font-semibold text-white">{platform.name}</span>
                     <span className="text-[10px]" style={{ color: "rgba(255, 255, 255, 0.5)" }}>
@@ -161,7 +176,7 @@ export default function TestimonialsSection({
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column - Vertical Auto-Scrolling Carousel */}
         <div
@@ -169,20 +184,15 @@ export default function TestimonialsSection({
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <motion.ul
+          <ul
             ref={scrollContainerRef}
             className="flex flex-col gap-5"
-            animate={{
-              y: scrollDistance > 0 ? -scrollDistance : 0,
-            }}
-            transition={{
-              duration: scrollDistance > 0 ? scrollDistance / 15 : 20, // Adjust speed here (lower = faster)
-              repeat: Infinity,
-              ease: "linear",
-              repeatType: "loop",
-            }}
             style={{
               willChange: "transform",
+              animationName: scrollDistance > 0 ? "testimonial-scroll" : "none",
+              animationDuration: scrollDistance > 0 ? `${scrollDistance / 15}s` : "0s",
+              animationTimingFunction: "linear",
+              animationIterationCount: "infinite",
               animationPlayState: isPaused ? "paused" : "running",
             }}
           >
@@ -191,11 +201,12 @@ export default function TestimonialsSection({
                 <TestimonialCard testimonial={testimonial} />
               </li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
         </div>
       </div>
     </section>
+    </>
   );
 }
 
@@ -268,7 +279,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
               width="14"
               height="14"
               viewBox="0 0 24 24"
-              fill="rgb(255, 122, 59)"
+              fill="#FCCA2F"
               className="text-orange-400"
             >
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
