@@ -81,7 +81,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 80, damping: 20 }}
             >
-              Your Dream Yard, Without the Weekend Work
+              {t.hero.headline[language]}
             </motion.h1>
 
             <motion.p
@@ -91,7 +91,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
             >
-              Columbia&apos;s trusted lawn care team. We handle the mowing, landscaping, and hardscaping, so your weekends stay free.
+              {t.hero.subheadline[language]}
             </motion.p>
 
             {/* Dual CTA Buttons */}
@@ -106,7 +106,7 @@ export default function Home() {
                 className="cta-button inline-flex h-13 items-center gap-2.5 rounded-full bg-green-primary px-7 text-sm font-semibold text-white transition-all hover:bg-green-dark"
                 style={{ fontFamily: "var(--font-raleway), sans-serif" }}
               >
-                Get Free Estimate
+                {t.hero.cta1[language]}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -119,7 +119,7 @@ export default function Home() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                (803) 743-8679
+                {t.hero.cta2[language]}
               </a>
             </motion.div>
           </div>
@@ -150,7 +150,7 @@ export default function Home() {
                     className="mt-1 text-xs font-medium text-white/60"
                     style={{ fontFamily: "var(--font-raleway), sans-serif" }}
                   >
-                    Years Experience
+                    {t.hero.statsYears[language]}
                   </div>
                 </div>
                 <div>
@@ -164,7 +164,7 @@ export default function Home() {
                     className="mt-1 text-xs font-medium text-white/60"
                     style={{ fontFamily: "var(--font-raleway), sans-serif" }}
                   >
-                    Satisfied Clients
+                    {t.hero.statsClients[language]}
                   </div>
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function Home() {
                   className="text-sm font-medium text-white/70"
                   style={{ fontFamily: "var(--font-raleway), sans-serif" }}
                 >
-                  18 Five-Star Reviews
+                  {t.hero.statsReviews[language]}
                 </span>
               </div>
             </a>
@@ -219,10 +219,10 @@ export default function Home() {
         <div className="mx-auto max-w-[1360px]">
           <div className="grid grid-cols-2 gap-8 py-12 md:grid-cols-4 md:py-16">
             {[
-              { target: 8, suffix: "+", label: "Years of Experience" },
-              { target: 330, suffix: "+", label: "Satisfied Clients" },
-              { target: 18, suffix: "+", label: "Five-Star Reviews" },
-              { target: null, display: "Free", suffix: "", label: "Estimates & Consultations" },
+              { target: 8, suffix: "+", label: t.statsBar.yearsLabel[language] },
+              { target: 330, suffix: "+", label: t.statsBar.clientsLabel[language] },
+              { target: 18, suffix: "+", label: t.statsBar.reviewsLabel[language] },
+              { target: null, display: t.statsBar.freeValue[language], suffix: "", label: t.statsBar.estimatesLabel[language] },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -277,7 +277,7 @@ export default function Home() {
                 className="text-sm font-semibold text-white"
                 style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
               >
-                Services
+                {t.services.badge[language]}
               </span>
             </div>
 
@@ -286,7 +286,7 @@ export default function Home() {
               className="text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl"
               style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
             >
-              What we <em className="italic">do</em>
+              {t.services.heading[language]}
             </h2>
 
             {/* Subtitle */}
@@ -294,7 +294,7 @@ export default function Home() {
               className="mx-auto max-w-xl text-base leading-relaxed text-foreground-secondary md:text-lg"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              From weekly mowing to custom fire pits, we handle it all
+              {t.services.subtitle[language]}
             </p>
           </motion.div>
 
@@ -323,27 +323,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Lawn Care & Mowing
+                    {t.services.card1.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Come home to a freshly cut lawn every week. We handle the mowing, edging, and cleanup so your yard always looks its best.
+                    {t.services.card1.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Residential yards, HOA properties</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card1.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Frequency</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Weekly or bi-weekly</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelFrequency[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card1.frequency[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Includes</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Mowing, edging, blowing</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelIncludes[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card1.includes[language]}</span>
                   </div>
                 </div>
               </div>
@@ -372,27 +372,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Landscaping Services
+                    {t.services.card2.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Give your property the curb appeal it deserves. From flower beds to tree rings, we design and maintain landscapes that stand out.
+                    {t.services.card2.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Property upgrades, curb appeal</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card2.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Includes</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Beds, tree rings, planting</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelIncludes[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card2.includes[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Estimated Duration</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>1&#8211;3 days</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelDuration[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card2.duration[language]}</span>
                   </div>
                 </div>
               </div>
@@ -421,27 +421,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Hedge & Shrub Trimming
+                    {t.services.card3.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Overgrown hedges drag down your whole yard. We shape and trim them back so your property looks clean and cared for.
+                    {t.services.card3.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Overgrown yards, HOA compliance</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card3.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Frequency</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Monthly or seasonal</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelFrequency[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card3.frequency[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Includes</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Shaping, cleanup, hauling</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelIncludes[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card3.includes[language]}</span>
                   </div>
                 </div>
               </div>
@@ -470,27 +470,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Mulch Installation & Delivery
+                    {t.services.card4.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Fresh mulch makes everything look finished. We deliver and spread it right, so your beds stay neat and your plants stay healthy.
+                    {t.services.card4.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Garden beds, tree rings</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card4.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Includes</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Delivery & professional spreading</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelIncludes[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card4.includes[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Estimated Duration</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>1&#8211;2 days</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelDuration[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card4.duration[language]}</span>
                   </div>
                 </div>
               </div>
@@ -519,27 +519,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Paver Patio & Walkway
+                    {t.services.card5.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Create the outdoor space you&apos;ve been wanting. We build custom paver patios and walkways made to last.
+                    {t.services.card5.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Outdoor living, entertaining</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card5.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Estimated Duration</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>3&#8211;7 days</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelDuration[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card5.duration[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Popular add-ons</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Fire pit, retaining walls</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelAddons[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card5.addons[language]}</span>
                   </div>
                 </div>
               </div>
@@ -568,27 +568,27 @@ export default function Home() {
                     className="text-xl font-bold text-foreground"
                     style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
                   >
-                    Fire Pit Installation
+                    {t.services.card6.title[language]}
                   </h4>
                   <p
                     className="text-sm leading-relaxed text-foreground-secondary"
                     style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
                   >
-                    Cool evenings, good company, your own backyard fire pit. We build them from scratch, ready for your first night out.
+                    {t.services.card6.description[language]}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 border-t pt-4" style={{ borderColor: 'rgba(0,0,0,0.08)' }}>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Perfect for</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Backyard gatherings, ambiance</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelPerfectFor[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card6.perfectFor[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Estimated Duration</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>1&#8211;3 days</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelDuration[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card6.duration[language]}</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>Popular add-ons</span>
-                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>Paver patio, seating walls</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-foreground/60" style={{ fontFamily: 'var(--font-raleway), sans-serif' }}>{t.services.labelAddons[language]}</span>
+                    <span className="text-right text-sm text-foreground-secondary" style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}>{t.services.card6.addons[language]}</span>
                   </div>
                 </div>
               </div>
@@ -616,20 +616,20 @@ export default function Home() {
                 className="text-sm font-semibold text-white"
                 style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
               >
-                The Proof
+                {t.ourWork.badge[language]}
               </span>
             </div>
             <h2
               className="text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl"
               style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
             >
-              What could we do with <em className="italic">your</em> yard?
+              {t.ourWork.heading[language]}
             </h2>
             <p
               className="mx-auto max-w-md text-base leading-relaxed text-foreground-secondary md:text-lg"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              Drag to see the transformation
+              {t.ourWork.subtitle[language]}
             </p>
           </motion.div>
 
@@ -644,6 +644,8 @@ export default function Home() {
               afterSrc="/afterv2.jpg"
               beforeAlt="Yard before Manzo's Lawn Care"
               afterAlt="Yard after Manzo's Lawn Care transformation"
+              beforeLabel={t.ourWork.before[language]}
+              afterLabel={t.ourWork.after[language]}
             />
           </motion.div>
 
@@ -659,7 +661,7 @@ export default function Home() {
               className="cta-button inline-flex h-13 items-center gap-2.5 rounded-full bg-green-primary px-8 text-sm font-semibold text-white transition-all hover:bg-green-dark"
               style={{ fontFamily: "var(--font-raleway), sans-serif" }}
             >
-              Get Your Free Estimate
+              {t.ourWork.cta[language]}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -688,20 +690,20 @@ export default function Home() {
                 className="text-sm font-semibold text-white"
                 style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
               >
-                How It Works
+                {t.howItWorks.badge[language]}
               </span>
             </div>
             <h2
               className="text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl"
               style={{ fontFamily: 'var(--font-raleway), sans-serif' }}
             >
-              Simple as <em className="italic">1, 2, 3</em>
+              {t.howItWorks.heading[language]}
             </h2>
             <p
               className="mx-auto max-w-xl text-base leading-relaxed text-foreground-secondary md:text-lg"
               style={{ fontFamily: 'var(--font-merriweather), Georgia, serif' }}
             >
-              From first call to finished yard, here&apos;s how we work with you
+              {t.howItWorks.subtitle[language]}
             </p>
           </motion.div>
 
@@ -710,8 +712,8 @@ export default function Home() {
             {[
               {
                 step: "01",
-                title: "Call for a Free Estimate",
-                description: "Give us a call or reach out on Facebook. We\u2019ll schedule a time to visit your property at no cost.",
+                title: t.howItWorks.step1Title[language],
+                description: t.howItWorks.step1Desc[language],
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -720,8 +722,8 @@ export default function Home() {
               },
               {
                 step: "02",
-                title: "We Discuss Your Vision",
-                description: "Carlos walks your property with you, listens to what you want, and puts together a clear plan with honest pricing.",
+                title: t.howItWorks.step2Title[language],
+                description: t.howItWorks.step2Desc[language],
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -730,8 +732,8 @@ export default function Home() {
               },
               {
                 step: "03",
-                title: "We Transform Your Yard",
-                description: "We show up on time, do the work right, and don\u2019t leave until you\u2019re happy with the results.",
+                title: t.howItWorks.step3Title[language],
+                description: t.howItWorks.step3Desc[language],
                 icon: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -787,9 +789,10 @@ export default function Home() {
 
       {/* Testimonials Section - Auto-Scrolling Carousel */}
       <TestimonialsSection
-        heading="Don't Take Our Word for It"
-        label="Testimonials"
-        ctaText="View Reviews"
+        heading={t.testimonials.heading[language]}
+        label={t.testimonials.label[language]}
+        ctaText={t.testimonials.ctaText[language]}
+        checkMoreText={t.testimonials.checkMore[language]}
         ctaHref="https://www.facebook.com/profile.php?id=100063831811913&sk=reviews"
         backgroundImage="/581810828_1328256535978728_1331481319508351998_n.jpg"
         testimonials={[
@@ -798,7 +801,7 @@ export default function Home() {
             name: "Paige Cooper",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Carlos and his team do great work. I'd highly recommend hiring them for all your landscaping needs.",
+            review: t.testimonials.review1[language],
             source: "Facebook Review",
           },
           {
@@ -806,7 +809,7 @@ export default function Home() {
             name: "Rebecca Huggins",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Very happy with their work! Quick to provide service. Even invited me to inspect their initial work before they left to ensure I was satisfied.",
+            review: t.testimonials.review2[language],
             source: "Facebook Review",
           },
           {
@@ -814,7 +817,7 @@ export default function Home() {
             name: "David Dowdy",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Carlos is a great person and a great lawn care professional. He has 15 years experience and I found him to be extremely patient and professional. I recommend Manzo to anyone needing lawn care. They ARE good people.",
+            review: t.testimonials.review3[language],
             source: "Facebook Review",
           },
           {
@@ -822,7 +825,7 @@ export default function Home() {
             name: "Will Hull",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "10/10. Excellent service and quality work. Highly recommend!",
+            review: t.testimonials.review4[language],
             source: "Facebook Review",
           },
           {
@@ -830,7 +833,7 @@ export default function Home() {
             name: "Dani Powell",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Great service and attention to detail. My yard has never looked better!",
+            review: t.testimonials.review5[language],
             source: "Facebook Review",
           },
           {
@@ -838,7 +841,7 @@ export default function Home() {
             name: "Zach Robertson",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Been using their services for years. Always reliable and professional. The best lawn care service in Columbia.",
+            review: t.testimonials.review6[language],
             source: "Facebook Review",
           },
           {
@@ -846,14 +849,14 @@ export default function Home() {
             name: "Diane Lyons",
             location: "Columbia, SC",
             avatarSrc: "",
-            review: "Top notch work! They transformed my overgrown yard into something beautiful. Couldn't be happier.",
+            review: t.testimonials.review7[language],
             source: "Facebook Review",
           },
         ]}
         reviewPlatforms={[
           {
             name: "Facebook Reviews",
-            subtitle: "18 Five Star Reviews",
+            subtitle: t.testimonials.platformSubtitle[language],
             href: "https://www.facebook.com/profile.php?id=100063831811913&sk=reviews",
             icon: (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -888,13 +891,13 @@ export default function Home() {
                 className="mb-4 text-3xl font-bold text-white md:text-5xl"
                 style={{ fontFamily: "var(--font-raleway), sans-serif" }}
               >
-                Your yard is one call away from looking its best
+                {t.contact.heading[language]}
               </h2>
               <p
                 className="mx-auto mb-10 max-w-lg text-base leading-relaxed text-white/60 md:text-lg"
                 style={{ fontFamily: "var(--font-merriweather), Georgia, serif" }}
               >
-                Every estimate is free, with no pressure and no contracts. Carlos will walk your property, hear what you want, and give you an honest quote.
+                {t.contact.description[language]}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a
@@ -905,7 +908,7 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  Call (803) 743-8679
+                  {t.contact.cta1[language]}
                 </a>
                 <a
                   href="https://www.facebook.com/profile.php?id=100063831811913"
@@ -914,7 +917,7 @@ export default function Home() {
                   className="cta-button inline-flex h-13 items-center gap-2.5 rounded-full border border-white/20 px-8 text-sm font-semibold text-white transition-all hover:bg-white/10"
                   style={{ fontFamily: "var(--font-raleway), sans-serif" }}
                 >
-                  Message on Facebook
+                  {t.contact.cta2[language]}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />
@@ -952,7 +955,7 @@ export default function Home() {
                 className="max-w-xs text-sm leading-relaxed text-white/50"
                 style={{ fontFamily: "var(--font-merriweather), Georgia, serif" }}
               >
-                Lawn care and landscaping in Columbia, SC. 8+ years of experience. Licensed &amp; insured.
+                {t.footer.description[language]}
               </p>
             </div>
 
@@ -962,17 +965,23 @@ export default function Home() {
                 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40"
                 style={{ fontFamily: "var(--font-raleway), sans-serif" }}
               >
-                Quick Links
+                {t.footer.quickLinks[language]}
               </h4>
               <ul className="flex flex-col gap-2.5">
-                {["Services", "Our Work", "How It Works", "Testimonials", "Contact"].map((link) => (
-                  <li key={link}>
+                {[
+                  { label: t.nav.services[language], href: "#services" },
+                  { label: t.nav.ourWork[language], href: "#our-work" },
+                  { label: t.nav.howItWorks[language], href: "#how-it-works" },
+                  { label: t.nav.testimonials[language], href: "#testimonials" },
+                  { label: t.nav.contact[language], href: "#contact" },
+                ].map((link) => (
+                  <li key={link.href}>
                     <a
-                      href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={link.href}
                       className="text-sm text-white/60 transition-colors hover:text-white"
                       style={{ fontFamily: "var(--font-raleway), sans-serif" }}
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -985,7 +994,7 @@ export default function Home() {
                 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40"
                 style={{ fontFamily: "var(--font-raleway), sans-serif" }}
               >
-                Contact
+                {t.footer.contactHeading[language]}
               </h4>
               <ul className="flex flex-col gap-3">
                 <li className="flex items-center gap-2.5 text-sm text-white/60">
@@ -999,7 +1008,7 @@ export default function Home() {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
-                  Columbia, SC & surrounding areas
+                  {t.footer.location[language]}
                 </li>
                 <li className="flex items-center gap-2.5 text-sm text-white/60">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -1024,7 +1033,7 @@ export default function Home() {
               className="text-xs text-white/30"
               style={{ fontFamily: "var(--font-raleway), sans-serif" }}
             >
-              &copy; {new Date().getFullYear()} Manzo&apos;s Lawn Care. All rights reserved.
+              &copy; {new Date().getFullYear()} Manzo&apos;s Lawn Care. {t.footer.rights[language]}
             </p>
           </div>
         </div>
