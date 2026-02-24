@@ -99,7 +99,7 @@ export const t = {
     label:      { en: "Testimonials",               es: "Testimonios" },
     ctaText:    { en: "View Reviews",               es: "Ver Reseñas" },
     checkMore:  { en: "Check More Reviews:",        es: "Ver Más Reseñas:" },
-    platformSubtitle: { en: "18 Five Star Reviews", es: "18 Reseñas de Cinco Estrellas" },
+    platformSubtitle: { en: "18 Five-Star Reviews", es: "18 Reseñas de Cinco Estrellas" },
     review1: { en: "Carlos and his team do great work. I'd highly recommend hiring them for all your landscaping needs.", es: "Carlos y su equipo hacen un excelente trabajo. Los recomiendo ampliamente para todas sus necesidades de paisajismo." },
     review2: { en: "Very happy with their work! Quick to provide service. Even invited me to inspect their initial work before they left to ensure I was satisfied.", es: "¡Muy satisfecha con su trabajo! Servicio rápido. Incluso me invitaron a inspeccionar el trabajo inicial antes de irse para asegurarse de que estaba satisfecha." },
     review3: { en: "Carlos is a great person and a great lawn care professional. He has 15 years experience and I found him to be extremely patient and professional. I recommend Manzo to anyone needing lawn care. They ARE good people.", es: "Carlos es una gran persona y un excelente profesional del cuidado de jardines. Tiene 15 años de experiencia y lo encontré extremadamente paciente y profesional. Recomiendo Manzo a cualquiera que necesite cuidado de jardines. Son buenas personas." },
