@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import type { Language } from "../context/LanguageContext";
 import { t } from "../translations";
 
 const navLinks = [
@@ -13,6 +14,26 @@ const navLinks = [
   { key: "testimonials" as const, href: "#testimonials" },
   { key: "contact" as const,      href: "#contact" },
 ];
+
+interface TogglePillProps {
+  language: Language;
+  onToggle: () => void;
+}
+
+function TogglePill({ language, onToggle }: TogglePillProps) {
+  return (
+    <button
+      onClick={onToggle}
+      aria-label="Toggle language EN ES"
+      className="flex items-center gap-1 rounded-full border border-white/30 px-3 py-1.5 text-xs font-semibold transition-all hover:border-white/60"
+      style={{ fontFamily: "var(--font-raleway), sans-serif" }}
+    >
+      <span className={language === "en" ? "text-white" : "text-white/40"}>EN</span>
+      <span className="text-white/30">|</span>
+      <span className={language === "es" ? "text-white" : "text-white/40"}>ES</span>
+    </button>
+  );
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,19 +54,6 @@ export default function Header() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
-
-  const TogglePill = () => (
-    <button
-      onClick={toggleLanguage}
-      aria-label="Toggle language EN ES"
-      className="flex items-center gap-1 rounded-full border border-white/30 px-3 py-1.5 text-xs font-semibold transition-all hover:border-white/60"
-      style={{ fontFamily: "var(--font-raleway), sans-serif" }}
-    >
-      <span className={language === "en" ? "text-white" : "text-white/40"}>EN</span>
-      <span className="text-white/30">|</span>
-      <span className={language === "es" ? "text-white" : "text-white/40"}>ES</span>
-    </button>
-  );
 
   return (
     <>
@@ -86,7 +94,7 @@ export default function Header() {
                 {t.nav[link.key][language]}
               </a>
             ))}
-            <TogglePill />
+            <TogglePill language={language} onToggle={toggleLanguage} />
             <a
               href="tel:8037438679"
               className="cta-button rounded-full bg-green-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-green-dark"
@@ -170,14 +178,14 @@ export default function Header() {
                 className="mt-4 rounded-full bg-green-primary px-8 py-3.5 text-lg font-semibold text-white transition-all hover:bg-green-dark"
                 style={{ fontFamily: "var(--font-raleway), sans-serif" }}
               >
-                {language === "en" ? "Call " : "Llama al "}{t.nav.cta[language]}
+                {t.contact.cta1[language]}
               </motion.a>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
               >
-                <TogglePill />
+                <TogglePill language={language} onToggle={toggleLanguage} />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
