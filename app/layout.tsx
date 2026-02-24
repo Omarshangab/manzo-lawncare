@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Raleway, Merriweather } from "next/font/google";
 import "./globals.css";
 import MadeByOrganiq from "./components/MadeByOrganiq";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -36,8 +37,10 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${merriweather.variable} antialiased`}
       >
-        {children}
-        <MadeByOrganiq />
+        <LanguageProvider>
+          {children}
+          <MadeByOrganiq />
+        </LanguageProvider>
       </body>
     </html>
   );
