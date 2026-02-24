@@ -41,4 +41,16 @@ describe("LanguageContext", () => {
     fireEvent.click(screen.getByText("toggle"));
     expect(screen.getByTestId("lang")).toHaveTextContent("en");
   });
+
+  it("updates document.documentElement.lang when toggled", () => {
+    render(
+      <LanguageProvider>
+        <TestConsumer />
+      </LanguageProvider>
+    );
+    fireEvent.click(screen.getByText("toggle"));
+    expect(document.documentElement.lang).toBe("es");
+    fireEvent.click(screen.getByText("toggle"));
+    expect(document.documentElement.lang).toBe("en");
+  });
 });
