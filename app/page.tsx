@@ -2,8 +2,10 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import Header from "./components/Header";
+import { useLanguage } from "./context/LanguageContext";
+import { t } from "./translations";
 import PhotoMarquee from "./components/PhotoMarquee";
 import TestimonialsSection from "./components/TestimonialsSection";
 import BeforeAfterSlider from "./components/BeforeAfterSlider";
@@ -32,10 +34,20 @@ function CountUp({ target, suffix = "" }: { target: number; suffix: string }) {
 }
 
 export default function Home() {
+  const { language } = useLanguage();
+
   return (
     <div className="relative min-h-screen">
       {/* Header/Navbar - Sticky with frosted glass on scroll */}
       <Header />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={language}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
 
       {/* Hero Section with Background Image */}
       <section className="relative min-h-screen">
@@ -628,8 +640,8 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.15 }}
           >
             <BeforeAfterSlider
-              beforeSrc="/manzo Before.jpg"
-              afterSrc="/Manzo After.jpg"
+              beforeSrc="/Beforev2.jpg"
+              afterSrc="/afterv2.jpg"
               beforeAlt="Yard before Manzo's Lawn Care"
               afterAlt="Yard after Manzo's Lawn Care transformation"
             />
@@ -1017,6 +1029,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
