@@ -9,6 +9,8 @@ interface BeforeAfterSliderProps {
   afterSrc: string;
   beforeAlt?: string;
   afterAlt?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
 }
 
 export default function BeforeAfterSlider({
@@ -16,6 +18,8 @@ export default function BeforeAfterSlider({
   afterSrc,
   beforeAlt = "Before",
   afterAlt = "After",
+  beforeLabel = "Before",
+  afterLabel = "After",
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50);
@@ -68,7 +72,7 @@ export default function BeforeAfterSlider({
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden rounded-[20px] select-none"
-      style={{ aspectRatio: "16 / 10" }}
+      style={{ aspectRatio: "4 / 3" }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -110,7 +114,7 @@ export default function BeforeAfterSlider({
           className="text-xs font-semibold uppercase tracking-wider text-white"
           style={{ fontFamily: "var(--font-raleway), sans-serif" }}
         >
-          Before
+          {beforeLabel}
         </span>
       </div>
 
@@ -123,7 +127,7 @@ export default function BeforeAfterSlider({
           className="text-xs font-semibold uppercase tracking-wider text-white"
           style={{ fontFamily: "var(--font-raleway), sans-serif" }}
         >
-          After
+          {afterLabel}
         </span>
       </div>
 
