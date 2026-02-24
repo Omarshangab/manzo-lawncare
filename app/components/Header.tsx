@@ -25,12 +25,11 @@ function TogglePill({ language, onToggle }: TogglePillProps) {
     <button
       onClick={onToggle}
       aria-label="Toggle language EN ES"
-      className="flex items-center gap-1 rounded-full border border-white/30 px-3 py-1.5 text-xs font-semibold transition-all hover:border-white/60"
+      className="flex items-center gap-1 rounded-full border border-white/40 bg-white/10 px-1.5 py-1.5 text-xs font-semibold backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/60"
       style={{ fontFamily: "var(--font-raleway), sans-serif" }}
     >
-      <span className={language === "en" ? "text-white" : "text-white/40"}>EN</span>
-      <span className="text-white/30">|</span>
-      <span className={language === "es" ? "text-white" : "text-white/40"}>ES</span>
+      <span className={language === "en" ? "rounded-full bg-green-primary px-2 py-0.5 text-white" : "px-2 py-0.5 text-white/50"}>EN</span>
+      <span className={language === "es" ? "rounded-full bg-green-primary px-2 py-0.5 text-white" : "px-2 py-0.5 text-white/50"}>ES</span>
     </button>
   );
 }
