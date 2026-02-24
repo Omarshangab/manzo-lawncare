@@ -28,6 +28,7 @@ interface TestimonialsSectionProps {
   ctaHref?: string;
   backgroundImage: string;
   reviewPlatforms: ReviewPlatform[];
+  checkMoreText?: string;
 }
 
 export default function TestimonialsSection({
@@ -38,6 +39,7 @@ export default function TestimonialsSection({
   ctaHref = "/reviews",
   backgroundImage,
   reviewPlatforms,
+  checkMoreText = "Check More Reviews:",
 }: TestimonialsSectionProps) {
   const scrollContainerRef = useRef<HTMLUListElement>(null);
   const [scrollDistance, setScrollDistance] = useState(0);
@@ -153,7 +155,7 @@ export default function TestimonialsSection({
           {/* Review Platform Links */}
           <div className="flex flex-col gap-4">
             <p className="text-sm" style={{ color: "rgba(255, 255, 255, 0.8)" }}>
-              Check More Reviews:
+              {checkMoreText}
             </p>
             <div className="flex flex-wrap gap-4">
               {reviewPlatforms.map((platform, index) => (
